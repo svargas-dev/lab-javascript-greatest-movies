@@ -18,14 +18,34 @@ function calculateAverageDramaRate(arrayOfMovies){
     const dramaArray = arrayOfMovies.filter((movie, index) => {
         return (arrayOfMovies[index].genre.includes('Drama'));
     });
-    if (Number(dramaArray) === 0){
+    if (dramaArray.length === 0){
         return 0;
     } else {
       return calculateAverageMovieRate(dramaArray); 
     }
 }
 
+
 // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
+
+function orderByYear(arrayOfMovies){
+  const moviesByYear = [...arrayOfMovies];
+  moviesByYear.sort((movieA, movieB) => {
+    if (movieA.year > movieB.year) {
+      return 1;
+    } else if (movieA.year < movieB.year){
+      return -1;
+    } else if (movieA.title.toLowerCase() > movieB.title.toLowerCase()) {
+      return 1;
+    } else if (movieA.title.toLowerCase() < movieB.title.toLowerCase()) {
+      return -1;
+    } else {
+      return 0;
+    }
+  });
+  return moviesByYear;
+}
+
 
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
 
