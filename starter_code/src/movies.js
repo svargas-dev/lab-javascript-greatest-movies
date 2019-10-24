@@ -80,5 +80,18 @@ function orderAlphabetically(arrayOfMovies){
 
 
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
+// This is still failing the test but I have no idea why. I can't see anything wrong...
+
+function turnHoursToMinutes(arrayOfMovies){
+  const arrayOfMoviesInMinutes = arrayOfMovies.map((movie, index) => {
+    const auxiliaryArray = arrayOfMovies[index].duration.split(" ");
+    hours = isNaN(parseInt(auxiliaryArray[0], 10)) ? 0 : parseInt(auxiliaryArray[0], 10) * 60;
+    minutes = isNaN(parseInt(auxiliaryArray[1], 10)) ? 0 : parseInt(auxiliaryArray[1], 10);
+    timeInMinutes = hours + minutes;
+    movie.duration = timeInMinutes;
+    return movie;
+  });
+  return arrayOfMoviesInMinutes;
+}
 
 // BONUS Iteration: Best yearly rate average - Best yearly rate average
