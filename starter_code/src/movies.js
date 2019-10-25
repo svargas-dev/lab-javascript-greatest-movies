@@ -11,6 +11,12 @@ function calculateAverageMovieRate(arrayOfMovies){
     // return Math.round(((sumOfRatings / arrayOfMovies.length)*100)/100);
 }
 
+// Solution
+// function calculateAverageMovieRate(movies){
+//   return movie.reduce((sum, movie) => + movie.rate / movies.length, 0);
+// }
+
+
 
 // Iteration 2: Drama movies - Get the average of Drama Movies
 
@@ -24,6 +30,19 @@ function calculateAverageDramaRate(arrayOfMovies){
       return calculateAverageMovieRate(dramaArray); 
     }
 }
+
+// Solution
+// function calculateAverageDramaRate(arrayOfMovies){
+//   if (!arrayOfMovies.length){
+//     return 0;
+//   }
+
+//   const dramaArray = arrayOfMovies.filter((movie, index) => {
+//       return (arrayOfMovies[index].genre.includes('Drama'));
+//   });
+//   return calculateAverageMovieRate(dramaArray);
+// }
+
 
 
 // Iteration 3: Ordering by duration - Order by time duration, ascending (in growing order)
@@ -45,6 +64,23 @@ function orderByYear(arrayOfMovies){
   });
   return moviesByYear;
 }
+
+// Solution
+// function orderByYear(arrayOfMovies){
+//   return [ ...arrayOfMovies ].sort((movieA, movieB) => {
+//     if (movieA.year > movieB.year) {
+//       return 1;
+//     } else if (movieA.year < movieB.year){
+//       return -1;
+//     } else if (movieA.title.toLowerCase() > movieB.title.toLowerCase()) {
+//       return 1;
+//     } else if (movieA.title.toLowerCase() < movieB.title.toLowerCase()) {
+//       return -1;
+//     } else {
+//       return 0;
+//     }
+//   });
+// }
 
 
 // Iteration 4: Steven Spielberg. The best? - How many movies did STEVEN SPIELBERG direct
@@ -82,12 +118,33 @@ function orderAlphabetically(arrayOfMovies){
 // Iteration 6: Time Format - Turn duration of the movies from hours to minutes
 // This is still failing the test but I have no idea why. I can't see anything wrong...
 
+// function turnHoursToMinutes(arrayOfMovies){
+//   const arrayOfMoviesInMinutes = arrayOfMovies.map((movie, index) => {
+//     const auxiliaryArray = arrayOfMovies[index].duration.split(" ");
+//     let hours = isNaN(parseInt(auxiliaryArray[0], 10)) ? 0 : parseInt(auxiliaryArray[0], 10) * 60;
+//     let minutes = isNaN(parseInt(auxiliaryArray[1], 10)) ? 0 : parseInt(auxiliaryArray[1], 10);
+//     let timeInMinutes = hours + minutes;
+//     movie.duration = timeInMinutes;
+//     console.log()
+//     return movie;
+//   });
+//   return arrayOfMoviesInMinutes;
+// }
+
 function turnHoursToMinutes(arrayOfMovies){
   const arrayOfMoviesInMinutes = arrayOfMovies.map((movie, index) => {
+    let hours = 0;
+    let minutes = 0;
     const auxiliaryArray = arrayOfMovies[index].duration.split(" ");
-    hours = isNaN(parseInt(auxiliaryArray[0], 10)) ? 0 : parseInt(auxiliaryArray[0], 10) * 60;
-    minutes = isNaN(parseInt(auxiliaryArray[1], 10)) ? 0 : parseInt(auxiliaryArray[1], 10);
-    timeInMinutes = hours + minutes;
+    // console.log(auxiliaryArray);
+    if (auxiliaryArray[0].includes('h')){
+      hours = isNaN(parseInt(auxiliaryArray[0], 10)) ? 0 : parseInt(auxiliaryArray[0], 10) * 60;
+      minutes = isNaN(parseInt(auxiliaryArray[1], 10)) ? 0 : parseInt(auxiliaryArray[1], 10);
+    } else {
+      hours = 0;
+      minutes = isNaN(parseInt(auxiliaryArray[0], 10)) ? 0 : parseInt(auxiliaryArray[0], 10);
+    }
+    let timeInMinutes = hours + minutes;
     movie.duration = timeInMinutes;
     return movie;
   });
